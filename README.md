@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Notes project
 
 ## Requirements
@@ -50,3 +51,6 @@ notes/<id>/ --> get details of a note
 notes/create/ --> create a note
 notes/<id>/delete/ --> delete a note
 ```
+=======
+# SE-LAB-AZ5
+>>>>>>> 68627a65f4125bf189dbcdd7a830da50d455c040
