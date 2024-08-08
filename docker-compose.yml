@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: ["./wait_for_postgres.sh", "db", "5432"]
+    
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DEBUG: 'false'
+      ALLOWED_HOSTS: "localhost 127.0.0.1"
+      SQL_ENGINE: django.db.backends.postgresql
+      SQL_DATABASE: notes_db
+      SQL_USER: notes_user
+      SQL_PASSWORD: notes_password
+      SQL_HOST: db
+      SQL_PORT: 5432
+
+  db:
+    image: postgres:16.3
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: notes_db
+      POSTGRES_USER: notes_user
+      POSTGRES_PASSWORD: notes_password
+
+volumes:
+  db:
