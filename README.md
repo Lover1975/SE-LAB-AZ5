@@ -158,9 +158,57 @@ DATABASES = {
 docker-compose up --build
 ```
 <br> <br>
+# ارسال درخواست به وب‌سرور
+بخش 1: برای ساخت یک یوزر از دستورات curl زیر استفاده می‌کنیم: 
+<br>
+```sh
+curl -X POST "http://localhost:8000/users/create/" -d "username=user1&password=1234"
+```
+<br> <br>
+![image](https://github.com/user-attachments/assets/c13d7953-1b0a-4fb1-ba83-8d894ef0883c)
+<br> <br> 
+سپس لاگین کردن user را داریم:
+<br>
+```sh
+curl -X POST "http://localhost:8000/users/login/" -d "username=user1&password=1234" -v
+```
+<br> <br>
+![image](https://github.com/user-attachments/assets/c70cd801-16e8-4903-b5c5-807fbb5c2e1e)
+
+<br> <br>
+
+بخش 2: ساخت یادداشت اول با استفاده از دستور زیر:
+
+<br>
+
+```sh
+curl -X POST "http://localhost:8000/notes/create/" -H "Cookie: sessionid=838iax48k0q0p5c55uxzszpradn9y6m" -d "title=title1&body=body1"
+```
+<br> <br>
+
+![image](https://github.com/user-attachments/assets/b5f50241-11bf-4391-aa93-8b9949139497)
+
+<br> <br>
+
+بخش 3: ساخت یادداشت دوم با دستور زیر:
+<br>
+```sh
+curl -X POST "http://localhost:8000/notes/create/" -H "Cookie: sessionid=838iax48k0q0p5c55uxzszpradn9y6m" -d "title=title2&body=body2"
+```
+<br> <br>
+![image](https://github.com/user-attachments/assets/89966fa5-a4ec-4b80-b3e3-e768f823c6c0)
+<br> <br>
+بخش 4: دریافت تمامی یادداشت های user با دستور زیر:
+<br>
+```sh
+curl -X GET "http://localhost:8000/notes/" -H "Cookie: sessionid=838iax48k0q0p5c55uxzszpradn9y6m"
+```
+<br> <br>
+![image](https://github.com/user-attachments/assets/1358d4f9-119d-47bb-b4b0-745bcad5731a)
 
 
 # تعامل با داکر
+
 
 ## بخش اول
 
